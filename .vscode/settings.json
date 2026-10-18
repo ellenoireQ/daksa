@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "pythonIndent.useTabOnHangingIndent": true,
+    "pythonIndent.trimLinesWithOnlyWhitespace": true,
+    "pythonIndent.keepHangingBracketOnLine": true
+}
