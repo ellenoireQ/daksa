@@ -21,3 +21,10 @@ assert mt - mt == Matrix(
 Multiplication test for matrices of the same order
 """
 print(mt * mt)
+
+"""
+Multiplication test for matrices of the same order
+"""
+assert (2 * 3.14) * mt == Matrix(
+    [[12.56, 18.84], [12.56, 25.12]]
+), f"Subtraction is wrong, actual value is: {(2 * 3.14) * mt}"

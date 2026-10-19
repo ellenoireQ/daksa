@@ -25,6 +25,9 @@ class Matrix:
     def __mul__(self, other: Matrix) -> Matrix:
         return Matrix(multiple_matrices(self.arrays, other.arrays))
 
+    def __rmul__(self, other: Number) -> Matrix:
+        return Matrix(multiple_matrices(other, self.arrays))
+
     def inverse(self) -> Matrix:
         return Matrix(invert_matrix(self.arrays))
 
