@@ -15,6 +15,9 @@ def subtract_matrices(left: MatrixData, right: MatrixData) -> MatrixData:
 
 
 def multiple_matrices(left: MatrixData, right: MatrixData) -> MatrixData:
+    """Elementwise multiplication, or scalar multiplication if `left` is a number."""
+    if isinstance(left, (int, float)):
+        return [[left * value for value in row] for row in right]
     return _combine_matrices(left, right, lambda first, second: first * second)
 
 
@@ -23,18 +26,12 @@ def _combine_matrices(
     right: MatrixData,
     operation: Callable[[Scalar, Scalar], Scalar],
 ) -> MatrixData:
-    if isinstance(left, Scalar):
-        opr = [
-            [left * right[row][column] for column in range(len(right[row]))]
-            for row in range(len(right))
-        ]
-    else:
-        opr = [
-            [
-                operation(left[row][column], right[row][column])
-                for column in range(len(left[row]))
-            ]
-            for row in range(len(left))
-        ]
+    if len(left) != len(right) or any(
+        len(left_row) != len(right_row) for left_row, right_row in zip(left, right)
+    ):
+        raise ValueError("Matrices must have the same order")
 
-    return opr
+    return [
+        [operation(a, b) for a, b in zip(left_row, right_row)]
+        for left_row, right_row in zip(left, right)
+    ]
