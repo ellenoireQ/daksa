@@ -16,3 +16,8 @@ Subtraction test for matrices of the same order
 assert mt - mt == Matrix(
     [[0, 0], [0, 0]]
 ), f"Subtraction is wrong, actual value is: {mt-mt}"
+
+"""
+Multiplication test for matrices of the same order
+"""
+print(mt * mt)
