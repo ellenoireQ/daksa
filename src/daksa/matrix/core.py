@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from numbers import Number
 
-from .arithmetic import add_matrices, subtract_matrices, multiple_matrices
+from .arithmetic import add_matrices, dot_matrices, multiple_matrices, subtract_matrices
 from .inverse import invert_matrix
 
 MatrixData = list[list[Number]]
@@ -24,6 +24,9 @@ class Matrix:
 
     def __mul__(self, other: Matrix) -> Matrix:
         return Matrix(multiple_matrices(self.arrays, other.arrays))
+
+    def __matmul__(self, other: Matrix) -> Matrix:
+        return Matrix(dot_matrices(self.arrays, other.arrays))
 
     def __rmul__(self, other: Number) -> Matrix:
         return Matrix(multiple_matrices(other, self.arrays))

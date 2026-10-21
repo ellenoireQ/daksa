@@ -21,6 +21,29 @@ def multiple_matrices(left: MatrixData, right: MatrixData) -> MatrixData:
     return _combine_matrices(left, right, lambda first, second: first * second)
 
 
+def dot_matrices(left: MatrixData, right: MatrixData) -> MatrixData:
+    """Multiply matrices using the dot product of rows and columns."""
+    if not left or not right:
+        return []
+
+    left_width = len(left[0])
+    right_width = len(right[0])
+    if any(len(row) != left_width for row in left) or any(
+        len(row) != right_width for row in right
+    ):
+        raise ValueError("Matrices must be rectangular")
+    if left_width != len(right):
+        raise ValueError("Matrices must have compatible dimensions")
+
+    return [
+        [
+            sum(left_value * right_row[column] for left_value, right_row in zip(row, right))
+            for column in range(right_width)
+        ]
+        for row in left
+    ]
+
+
 def _combine_matrices(
     left: MatrixData,
     right: MatrixData,
