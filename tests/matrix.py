@@ -60,7 +60,4 @@ if __name__ == "__main__":
     test_scalar_multiplication()
     test_matrix_multiplication()
     test_matrix_multiplication_requires_compatible_dimensions()
-
-    m = Matrix([[2, 3], [2, 3], [2, 3]]) @ Matrix([[2, 3], [2, 3]])
-    print(m)
     print("All tests passed.")
